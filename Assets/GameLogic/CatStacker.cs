@@ -45,6 +45,12 @@ namespace GameLogic
 
         public void Clear()
         {
+            foreach (var stackedCat in _stackedCats)
+            {
+                Destroy(stackedCat.Cat.gameObject);
+                stackedCat.Cat = null;
+            }
+
             _stackedCats.Clear();
         }
 
