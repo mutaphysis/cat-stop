@@ -15,7 +15,13 @@ namespace GameLogic
             if (Time.time > _lastStackTime + _timeToNextStack)
             {
                 var newCat = _catStacker.GetRandomCat();
-                _catStacker.StackCat(newCat, Random.Range(-1, 1));
+                _catStacker.StackCat(newCat, Random.Range(-1f, 1f), Random.Range(0f, 360f));
+                _lastStackTime = Time.time;
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                _catStacker.Clear();
             }
         }
 
