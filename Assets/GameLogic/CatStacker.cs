@@ -1,20 +1,22 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace GameLogic
 {
     public class CatStacker : MonoBehaviour
     {
+        [FormerlySerializedAs("_catPrefabss")]
         [SerializeField]
-        private StackableCat[] _catPrefabss = default;
+        private StackableCat[] _catPrefabs = default;
 
         [SerializeField]
         private Transform _stackRoot = null;
 
         public StackableCat GetRandomCat()
         {
-            return _catPrefabss[Random.Range(0, _catPrefabss.Length - 1)];
+            return _catPrefabs[Random.Range(0, _catPrefabs.Length - 1)];
         }
 
         public void StackCat(StackableCat catPrefab, float position, float rotation)
