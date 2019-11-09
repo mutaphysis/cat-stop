@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -13,6 +14,8 @@ namespace GameLogic
 
         [SerializeField]
         private Transform _stackRoot = null;
+
+        public event Action<float> StackHeightChange;
 
         public IReadOnlyList<StackedCat> Stack => _stackedCats;
 
@@ -48,6 +51,8 @@ namespace GameLogic
             };
 
             _stackedCats.Add(stacked);
+
+            StackHeightChange?.Invoke(placementHeight);
         }
 
         public void Clear()
@@ -59,6 +64,7 @@ namespace GameLogic
             }
 
             _stackedCats.Clear();
+            StackHeightChange?.Invoke(0);
         }
 
         private readonly List<StackedCat> _stackedCats = new List<StackedCat>();
