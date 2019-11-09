@@ -242,6 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _titleGroup: {fileID: 1456159303}
   _gameGroup: {fileID: 646616409}
+  _catStacker: {fileID: 1439212755}
   _state: 0
 --- !u!4 &195643604
 Transform:
@@ -505,7 +506,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _catPrefabs:
-  - {fileID: 528339916218093451, guid: 8bfcdbb587b7549b0b502a57b6be0d4e, type: 3}
+  - {fileID: 528339916218093451, guid: 38dcc2e8ac9334689835fb4fd31f89d7, type: 3}
+  - {fileID: 528339916218093451, guid: 732adaf0e8e96472a8c8249bd52a98a1, type: 3}
+  - {fileID: 528339916218093451, guid: 2834caf49a1364232a5276db1291f4ba, type: 3}
+  - {fileID: 528339916218093451, guid: af6894861873b41f6bf7ac6adc1d0b01, type: 3}
+  - {fileID: 528339916218093451, guid: 92d3f5809559a4004b8ac7ff3e3b5ac6, type: 3}
+  - {fileID: 528339916218093451, guid: 8d009d1ea63f4499ca28eb989bfcac58, type: 3}
+  - {fileID: 528339916218093451, guid: 187d2412b198f4534b9f8af0ada72502, type: 3}
+  - {fileID: 528339916218093451, guid: a836cdcb7de58463783a8506e0dc2934, type: 3}
+  - {fileID: 528339916218093451, guid: 9f05314b796bb4b5786bf1646c1b49b3, type: 3}
+  - {fileID: 528339916218093451, guid: 19dc98802cfa044e2b6fe327487fe434, type: 3}
+  - {fileID: 528339916218093451, guid: 49d2e2d0790d84a438291230ffd624b0, type: 3}
   _stackRoot: {fileID: 1439212756}
   _overlapMultiplier: 1
 --- !u!4 &1439212756
@@ -770,7 +781,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5302a1dc7b6a14d5f934e82e7727a5d3, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -929,6 +940,11 @@ PrefabInstance:
     - target: {fileID: 8145997820783646181, guid: 4a4d6aaa5175b44e6944bb2b0867f08d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482947300425646146, guid: 4a4d6aaa5175b44e6944bb2b0867f08d,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

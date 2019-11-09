@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameLogic;
 using UnityEngine;
 
 public class AppLogic : MonoBehaviour
@@ -9,7 +10,9 @@ public class AppLogic : MonoBehaviour
     [SerializeField] private GameObject _titleGroup= default;
 
     [SerializeField] private GameObject _gameGroup = default;
-
+    
+    [SerializeField] private CatStacker _catStacker = default;
+    
     private void Awake()
     {
         SetState(States.Title);    // Hide game scene
@@ -44,11 +47,13 @@ public class AppLogic : MonoBehaviour
             case States.Title:
                 _titleGroup.SetActive(true);
                 _gameGroup.SetActive(false);
+                
                 break;
             
             case States.InGame:
                 _titleGroup.SetActive(false);
                 _gameGroup.SetActive(true);
+                _catStacker.Clear();
                 break;
         }
         _state = newState;

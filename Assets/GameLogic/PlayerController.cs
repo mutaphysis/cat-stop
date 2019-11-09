@@ -11,6 +11,8 @@ namespace GameLogic
         private CatStacker _catStacker = default;
 
 
+        [SerializeField] private float _catScale = 0.4f;
+        
         [Header("--- internal prefab references ------")]
         [SerializeField]
         private float _placementPeriod = 2;
@@ -24,6 +26,8 @@ namespace GameLogic
         [SerializeField]
         private Transform _handTransform = default;
 
+        
+        
         private StackableCat _grabbedCat = null;
 
         public void PlaceCats()
@@ -41,7 +45,7 @@ namespace GameLogic
             }
 
             if (_grabbedCat)
-                _grabbedCat.transform.localScale = Vector3.one * _catScaleUp.Evaluate(catAge);
+                _grabbedCat.transform.localScale = Vector3.one * _catScaleUp.Evaluate(catAge) * _catScale;
         }
 
         private void PlaceNewCat()
