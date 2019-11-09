@@ -15,7 +15,7 @@ namespace GameLogic
 
         public void Awake()
         {
-            _catStacker.StackHeightChange += OnStackHeightChangedHandler;
+            _catStacker.StackTopChange += OnStackTopChangedHandler;
         }
 
         private void Update()
@@ -27,9 +27,9 @@ namespace GameLogic
             _camera.transform.position = cameraPosition;
         }
 
-        private void OnStackHeightChangedHandler(Vector3 vector3)
+        private void OnStackTopChangedHandler(Vector2 top)
         {
-            _targetCameraPosition = vector3.y;
+            _targetCameraPosition = top.y;
         }
 
         private float _cameraVelocity = 0f;
