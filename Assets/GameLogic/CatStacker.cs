@@ -29,17 +29,15 @@ namespace GameLogic
 
         public void StackCat(StackableCat catPrefab, float position, float rotation)
         {
-            var spriteRenderer = catPrefab.GetComponent<SpriteRenderer>();
-            // var spriteHeight = spriteRenderer.size.y;
-            var sprite = spriteRenderer.sprite;
-            var border = sprite.border;
-            var sizeInSprite = (border.z + border.w) / sprite.pixelsPerUnit;
-            var height = sizeInSprite * _overlapMultiplier;
+            var height = catPrefab.DetermineHeight() * _overlapMultiplier;
 
-            var placementHeight = 0f;
+            var placementHeight = height;
+            var placementCenter = position;
             if (_stackedCats.Count > 0)
             {
-                placementHeight = _stackedCats[_stackedCats.Count - 1].Height;
+                var lastCat = _stackedCats[_stackedCats.Count - 1];
+                placementHeight += lastCat.Position.y;
+                placementCenter += lastCat.InitialCenterOffset;
             }
 
             var placedCat = Instantiate(
@@ -48,13 +46,13 @@ namespace GameLogic
                 Quaternion.Euler(0, 0, rotation),
                 _stackRoot);
 
-            placedCat.transform.localPosition = new Vector3(position, placementHeight, 0);
+            placedCat.transform.localPosition = new Vector3(placementCenter, placementHeight, 0);
 
             var stacked = new StackedCat
             {
                 Cat = placedCat,
-                Height = placementHeight + height,
-                Position = position,
+                InitialCenterOffset = placementCenter,
+                Position = new Vector2(placementCenter, placementHeight),
             };
 
             _stackedCats.Add(stacked);
@@ -80,11 +78,9 @@ namespace GameLogic
         {
             public StackableCat Cat = null;
 
-            public float Height = 0;
+            public float InitialCenterOffset = 0;
 
-            public float Position = 0;
-
-            // todo more info for bending physics
+            public Vector2 Position = Vector2.zero;
         }
     }
 }

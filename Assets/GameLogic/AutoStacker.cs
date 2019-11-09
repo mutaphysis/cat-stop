@@ -1,3 +1,4 @@
+using Physics;
 using UnityEngine;
 
 namespace GameLogic
@@ -9,6 +10,9 @@ namespace GameLogic
 
         [SerializeField]
         private CatStacker _catStacker = null;
+
+        [SerializeField]
+        private AbstractCatStackPhysics _physics = null;
 
         private void Update()
         {
@@ -23,6 +27,8 @@ namespace GameLogic
             {
                 _catStacker.Clear();
             }
+
+            _physics.UpdatePhysics();
         }
 
         private float _lastStackTime = 0;

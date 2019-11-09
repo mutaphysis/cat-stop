@@ -9,7 +9,7 @@ namespace Physics
         [SerializeField]
         private CatStacker _catStacker = null;
 
-        private void Update()
+        public void UpdatePhysics()
         {
             ApplyPhysics(_catStacker.Stack);
         }

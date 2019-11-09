@@ -248,6 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToNextStack: 1
   _catStacker: {fileID: 1439212755}
+  _physics: {fileID: 1534510085}
 --- !u!1 &1175921466
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,5 +386,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _catStacker: {fileID: 1439212755}
-  _frequency: 1
-  _amplitude: 1
+  _frequency: 0.5
+  _amplitude: 2

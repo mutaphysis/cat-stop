@@ -23,8 +23,9 @@ namespace Physics
                 var catTransform = stackedCat.Cat.transform;
 
                 var swayedPosition = catTransform.localPosition;
-                swayedPosition.x = sway + stackedCat.Position;
+                swayedPosition.x = sway + stackedCat.InitialCenterOffset;
                 catTransform.localPosition = swayedPosition;
+                stackedCat.Position = swayedPosition;
             }
         }
     }
