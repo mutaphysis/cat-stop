@@ -14,6 +14,8 @@ namespace GameLogic
         [SerializeField]
         private Transform _stackRoot = null;
 
+        public IReadOnlyList<StackedCat> Stack => _stackedCats;
+
         public StackableCat GetRandomCat()
         {
             return _catPrefabs[Random.Range(0, _catPrefabs.Length - 1)];
@@ -32,14 +34,17 @@ namespace GameLogic
 
             var placedCat = Instantiate(
                 catPrefab,
-                new Vector3(position, placementHeight * _stackRoot.lossyScale.y, 0),
+                Vector3.zero,
                 Quaternion.Euler(0, 0, rotation),
                 _stackRoot);
+
+            placedCat.transform.localPosition = new Vector3(position, placementHeight, 0);
 
             var stacked = new StackedCat
             {
                 Cat = placedCat,
-                Height = placementHeight + height
+                Height = placementHeight + height,
+                Position = position,
             };
 
             _stackedCats.Add(stacked);
@@ -63,6 +68,8 @@ namespace GameLogic
             public StackableCat Cat = null;
 
             public float Height = 0;
+
+            public float Position = 0;
 
             // todo more info for bending physics
         }
