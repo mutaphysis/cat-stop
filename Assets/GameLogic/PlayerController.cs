@@ -55,10 +55,10 @@ namespace GameLogic
             _animator.SetBool(_grammingPropertyName, true);
             _lastPlacementTime = Time.time;
             Invoke("ResetGrabbing", 0.2f);
-            PlanceAndNewCat();
+            PlaceAndGrabNewCat();
         }
 
-        private void PlanceAndNewCat()
+        private void PlaceAndGrabNewCat()
         {
             if (_grabbedCat)
             {
