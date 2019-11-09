@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using GameLogic;
 using UnityEngine;
 
 /// <summary>
@@ -7,6 +8,9 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private CatStacker _catStacker = default;
+    
+    [Header("--- internal prefab references ------")]
     [SerializeField] private float _placementPeriod = 2;
 
     [SerializeField] private Animator _animator = default;
@@ -35,14 +39,22 @@ public class PlayerController : MonoBehaviour
         var shouldPlaceCat = catAge > _placementPeriod;
         if (shouldPlaceCat)
         {
-            _animator.SetBool(_grammingPropertyName, true);
-            _lastPlacementTime = Time.time;
-            Invoke("ResetGrabbing", 0.2f);
-            CreateNewCat();
+            PlaceNewCat();
         }
         
         if(_catSprite)
             _catSprite.transform.localScale = Vector3.one *_catScaleUp.Evaluate(catAge); 
+    }
+
+    private void PlaceNewCat()
+    {
+        _animator.SetBool(_grammingPropertyName, true);
+        _lastPlacementTime = Time.time;
+        Invoke("ResetGrabbing", 0.2f);
+        CreateNewCat();
+        //var newCat = _catStacker.GetRandomCat();
+        _catStacker.StackCat(newCat, Random.Range(-1f, 1f), Random.Range(0f, 360f));
+        
     }
 
     private void CreateNewCat()
@@ -64,5 +76,6 @@ public class PlayerController : MonoBehaviour
     private const string _placementPropertyName = "placement";
     private const string _grammingPropertyName = "grabbing";
 
+    
     public AnimationCurve _catScaleUp = default;
 }

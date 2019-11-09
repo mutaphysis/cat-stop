@@ -18,7 +18,7 @@ namespace GameLogic
         [SerializeField]
         private float _overlapMultiplier = .85f;
 
-        public event Action<float> StackHeightChange;
+        public event Action<Vector3> StackHeightChange;
 
         public IReadOnlyList<StackedCat> Stack => _stackedCats;
 
@@ -32,12 +32,12 @@ namespace GameLogic
             var height = catPrefab.DetermineHeight() * _overlapMultiplier;
 
             var placementHeight = height;
-            var placementCenter = position;
+            var horizontalPlacementCenter = position;
             if (_stackedCats.Count > 0)
             {
                 var lastCat = _stackedCats[_stackedCats.Count - 1];
                 placementHeight += lastCat.Position.y;
-                placementCenter += lastCat.InitialCenterOffset;
+                horizontalPlacementCenter += lastCat.InitialCenterOffset;
             }
 
             var placedCat = Instantiate(
@@ -46,18 +46,19 @@ namespace GameLogic
                 Quaternion.Euler(0, 0, rotation),
                 _stackRoot);
 
-            placedCat.transform.localPosition = new Vector3(placementCenter, placementHeight, 0);
+            placedCat.transform.localPosition = new Vector3(horizontalPlacementCenter, placementHeight, 0);
 
             var stacked = new StackedCat
             {
                 Cat = placedCat,
-                InitialCenterOffset = placementCenter,
-                Position = new Vector2(placementCenter, placementHeight),
+                InitialCenterOffset = horizontalPlacementCenter,
+                Position = new Vector2(horizontalPlacementCenter, placementHeight),
             };
 
             _stackedCats.Add(stacked);
 
-            StackHeightChange?.Invoke(placementHeight);
+            var newTop = new Vector3(horizontalPlacementCenter, placementHeight,0);
+            StackHeightChange?.Invoke(newTop);
         }
 
         public void Clear()
@@ -69,7 +70,7 @@ namespace GameLogic
             }
 
             _stackedCats.Clear();
-            StackHeightChange?.Invoke(0);
+            StackHeightChange?.Invoke(Vector3.zero);
         }
 
         private readonly List<StackedCat> _stackedCats = new List<StackedCat>();

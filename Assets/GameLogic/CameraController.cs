@@ -27,9 +27,9 @@ namespace GameLogic
             _camera.transform.position = cameraPosition;
         }
 
-        private void OnStackHeightChangedHandler(float height)
+        private void OnStackHeightChangedHandler(Vector3 vector3)
         {
-            _targetCameraPosition = height;
+            _targetCameraPosition = vector3.y;
         }
 
         private float _cameraVelocity = 0f;

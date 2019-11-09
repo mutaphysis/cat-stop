@@ -30,7 +30,7 @@ namespace GameLogic
 
             _physics.UpdatePhysics();
         }
-
+        
         private float _lastStackTime = 0;
     }
 }
