@@ -10,9 +10,9 @@ public class AppLogic : MonoBehaviour
     [SerializeField] private GameObject _titleGroup= default;
 
     [SerializeField] private GameObject _gameGroup = default;
-    
+
     [SerializeField] private CatStacker _catStacker = default;
-    
+
     private void Awake()
     {
         SetState(States.Title);    // Hide game scene
@@ -27,10 +27,13 @@ public class AppLogic : MonoBehaviour
                 if(Input.GetMouseButtonDown(0))
                     SetState(States.InGame);
                 break;
-            
+
             case States.InGame:
-                if(Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0))
+                {
+                    _catStacker.PlaceFinalBear();
                     SetState(States.Title);
+                }
                 break;
         }
     }
@@ -41,15 +44,15 @@ public class AppLogic : MonoBehaviour
         if (newState == _state)
             return;
 
-        
+
         switch (newState)
         {
             case States.Title:
                 _titleGroup.SetActive(true);
                 _gameGroup.SetActive(false);
-                
+
                 break;
-            
+
             case States.InGame:
                 _titleGroup.SetActive(false);
                 _gameGroup.SetActive(true);

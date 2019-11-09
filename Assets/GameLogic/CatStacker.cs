@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -13,6 +14,9 @@ namespace GameLogic
         private StackableCat[] _catPrefabs = default;
 
         [SerializeField]
+        private GameObject _finalBear = default;
+
+        [SerializeField]
         private Transform _stackRoot = null;
 
         [SerializeField]
@@ -24,6 +28,18 @@ namespace GameLogic
         public StackableCat GetRandomCatPrefab()
         {
             return _catPrefabs[Random.Range(0, _catPrefabs.Length - 1)];
+        }
+
+        public void PlaceFinalBear()
+        {
+            if (!_finalBear)
+            {
+                return;
+            }
+
+            var bear = Instantiate(_finalBear, transform.parent);
+            bear.transform.position = new Vector3(6f, Top.y, 10f);
+            bear.GetComponentInChildren<TMP_Text>().text = $"{Top.y:F0}m";
         }
 
         public void StackCat(StackableCat catPrefab, float position, float rotation)
