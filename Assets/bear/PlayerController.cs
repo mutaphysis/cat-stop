@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         _lastPlacementTime = Time.time;
         Invoke("ResetGrabbing", 0.2f);
         CreateNewCat();
-        //var newCat = _catStacker.GetRandomCat();
+        var newCat = _catStacker.GetRandomCat();
         _catStacker.StackCat(newCat, Random.Range(-1f, 1f), Random.Range(0f, 360f));
         
     }
