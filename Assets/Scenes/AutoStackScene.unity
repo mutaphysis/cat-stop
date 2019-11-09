@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e263218fd64da38ca1fe85503e0f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToNextStack: 0.5
+  _timeToNextStack: 1
   _catStacker: {fileID: 1439212755}
 --- !u!1 &1175921466
 GameObject:
@@ -326,6 +326,7 @@ MonoBehaviour:
   _catPrefabs:
   - {fileID: 528339916218093451, guid: 8bfcdbb587b7549b0b502a57b6be0d4e, type: 3}
   _stackRoot: {fileID: 1439212756}
+  _overlapMultiplier: 1
 --- !u!4 &1439212756
 Transform:
   m_ObjectHideFlags: 0

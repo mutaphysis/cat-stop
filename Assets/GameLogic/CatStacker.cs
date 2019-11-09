@@ -15,6 +15,9 @@ namespace GameLogic
         [SerializeField]
         private Transform _stackRoot = null;
 
+        [SerializeField]
+        private float _overlapMultiplier = .85f;
+
         public event Action<float> StackHeightChange;
 
         public IReadOnlyList<StackedCat> Stack => _stackedCats;
@@ -27,7 +30,11 @@ namespace GameLogic
         public void StackCat(StackableCat catPrefab, float position, float rotation)
         {
             var spriteRenderer = catPrefab.GetComponent<SpriteRenderer>();
-            var height = spriteRenderer.size.y;
+            // var spriteHeight = spriteRenderer.size.y;
+            var sprite = spriteRenderer.sprite;
+            var border = sprite.border;
+            var sizeInSprite = (border.z + border.w) / sprite.pixelsPerUnit;
+            var height = sizeInSprite * _overlapMultiplier;
 
             var placementHeight = 0f;
             if (_stackedCats.Count > 0)
