@@ -18,8 +18,6 @@ namespace GameLogic
         [SerializeField]
         private float _overlapMultiplier = .85f;
 
-        public event Action<Vector2> StackTopChange;
-
         public IReadOnlyList<StackedCat> Stack => _stackedCats;
         public Vector2 Top => _stackedCats.Count == 0 ? Vector2.zero : _stackedCats[_stackedCats.Count - 1].Position;
 
@@ -78,9 +76,6 @@ namespace GameLogic
             }
 
             _stackedCats.Add(stacked);
-
-            var newTop = new Vector3(horizontalPlacementCenter, placementHeight, 0);
-            StackTopChange?.Invoke(newTop);
         }
 
 
@@ -93,7 +88,6 @@ namespace GameLogic
             }
 
             _stackedCats.Clear();
-            StackTopChange?.Invoke(Vector3.zero);
         }
 
         private readonly List<StackedCat> _stackedCats = new List<StackedCat>();
