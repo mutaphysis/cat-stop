@@ -9,9 +9,11 @@ namespace GameLogic
     {
         [SerializeField]
         private CatStacker _catStacker = default;
-
-
+        
         [SerializeField] private float _catScale = 0.4f;
+
+        [SerializeField] private float _catRotationMin = 10;
+        [SerializeField] private float _catRotationMax = 90;
         
         [Header("--- internal prefab references ------")]
         [SerializeField]
@@ -67,6 +69,10 @@ namespace GameLogic
             var randomCatPrefab = _catStacker.GetRandomCatPrefab();
             _grabbedCat = Instantiate(randomCatPrefab, _handTransform);
             _grabbedCat.transform.Translate(Vector3.back* 0.2f);
+            var angles = _grabbedCat.transform.localEulerAngles;
+            angles.z += Random.Range(_catRotationMin, _catRotationMax);
+            _grabbedCat.transform.localEulerAngles = angles;
+            //_grabbedCat.transform.RotateAround();
             _grabbedCat.transform.localScale = Vector3.zero;
         }
 
