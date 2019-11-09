@@ -50,3 +50,5 @@ sysinfo.txt
 # Conflicts
 *.orig
 *.orig.meta
+
+Logs/
