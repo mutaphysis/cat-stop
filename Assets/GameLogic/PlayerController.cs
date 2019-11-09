@@ -50,9 +50,6 @@ namespace GameLogic
             _lastPlacementTime = Time.time;
             Invoke("ResetGrabbing", 0.2f);
             PlanceAndNewCat();
-            //var newCat = _catStacker.GetRandomCat();
-            //_catStacker.StackCat(newCat, Random.Range(-1f, 1f), Random.Range(0f, 360f));
-            //_catStacker.StackCat(_grabbedCat);
         }
 
         private void PlanceAndNewCat()
@@ -65,8 +62,8 @@ namespace GameLogic
 
             var randomCatPrefab = _catStacker.GetRandomCatPrefab();
             _grabbedCat = Instantiate(randomCatPrefab, _handTransform);
+            _grabbedCat.transform.Translate(Vector3.back* 0.2f);
             _grabbedCat.transform.localScale = Vector3.zero;
-            //_stackableCat = newCat.transform;
         }
 
         private void ResetGrabbing()

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,13 @@ public class AppLogic : MonoBehaviour
     [SerializeField] private GameObject _titleGroup= default;
 
     [SerializeField] private GameObject _gameGroup = default;
-    // Update is called once per frame
+
+    private void Awake()
+    {
+        SetState(States.Title);    // Hide game scene
+    }
+
+
     void Update()
     {
         switch (_state)
@@ -47,9 +54,10 @@ public class AppLogic : MonoBehaviour
         _state = newState;
     }
 
-    public States _state = States.Title;
+    public States _state = States.Unknown;
     public enum States
     {
+        Unknown,
         Title,
         InGame,
     }
