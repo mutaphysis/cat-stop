@@ -22,11 +22,34 @@ namespace GameLogic
 
         public IReadOnlyList<StackedCat> Stack => _stackedCats;
 
-        public StackableCat GetRandomCat()
+        public StackableCat GetRandomCatPrefab()
         {
             return _catPrefabs[Random.Range(0, _catPrefabs.Length - 1)];
         }
 
+
+        public void StackInstantiatedCat(StackableCat placedCat)
+        {
+            //var placedCat = catInstance;
+            //place
+            placedCat.transform.SetParent(_stackRoot);
+            var horizontalPlacementCenter = placedCat.transform.position.x;
+            var placementHeight = placedCat.transform.position.y;
+            
+            var stacked = new StackedCat
+            {
+                Cat = placedCat,
+                InitialCenterOffset = horizontalPlacementCenter,
+                Position = new Vector2(horizontalPlacementCenter, placementHeight),
+            };
+
+            _stackedCats.Add(stacked);
+
+            var newTop = new Vector3(horizontalPlacementCenter, placementHeight,0);
+            StackHeightChange?.Invoke(newTop);
+        }
+        
+        
         public void StackCat(StackableCat catPrefab, float position, float rotation)
         {
             var height = catPrefab.DetermineHeight() * _overlapMultiplier;

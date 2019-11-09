@@ -514,5 +514,10 @@ PrefabInstance:
       propertyPath: _catStacker
       value: 
       objectReference: {fileID: 1439212755}
+    - target: {fileID: 6082751250782623232, guid: 824c37758a81743139b08e8bd59ec2f3,
+        type: 3}
+      propertyPath: _physics
+      value: 
+      objectReference: {fileID: 1534510085}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 824c37758a81743139b08e8bd59ec2f3, type: 3}

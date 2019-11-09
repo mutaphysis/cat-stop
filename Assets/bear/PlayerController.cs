@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using GameLogic;
+using Physics;
 using UnityEngine;
 
 /// <summary>
@@ -9,6 +10,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CatStacker _catStacker = default;
+    
+    [SerializeField]
+    private AbstractCatStackPhysics _physics = null;
+
     
     [Header("--- internal prefab references ------")]
     [SerializeField] private float _placementPeriod = 2;
@@ -19,13 +24,12 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Transform _handTransform = default;
 
-    [SerializeField] private Transform _catSprite = null;
+    private StackableCat _grabbedCat = null;
 
-    [SerializeField] private GameObject _catPrefab = null;
-    
     void Update()
     {
         PlaceCats();
+        _physics.UpdatePhysics();
     }
 
     private void PlaceCats()
@@ -42,8 +46,8 @@ public class PlayerController : MonoBehaviour
             PlaceNewCat();
         }
         
-        if(_catSprite)
-            _catSprite.transform.localScale = Vector3.one *_catScaleUp.Evaluate(catAge); 
+        if(_grabbedCat)
+            _grabbedCat.transform.localScale = Vector3.one *_catScaleUp.Evaluate(catAge); 
     }
 
     private void PlaceNewCat()
@@ -51,20 +55,24 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool(_grammingPropertyName, true);
         _lastPlacementTime = Time.time;
         Invoke("ResetGrabbing", 0.2f);
-        CreateNewCat();
-        var newCat = _catStacker.GetRandomCat();
-        _catStacker.StackCat(newCat, Random.Range(-1f, 1f), Random.Range(0f, 360f));
-        
+        PlanceAndNewCat();
+        //var newCat = _catStacker.GetRandomCat();
+        //_catStacker.StackCat(newCat, Random.Range(-1f, 1f), Random.Range(0f, 360f));
+        //_catStacker.StackCat(_grabbedCat);
     }
 
-    private void CreateNewCat()
+    private void PlanceAndNewCat()
     {
-        if(_catSprite)
-            DestroyImmediate(_catSprite.gameObject);
+        if (_grabbedCat)
+        {
+            _catStacker.StackInstantiatedCat(_grabbedCat);
+            _grabbedCat = null;
+        }
         
-        var newCat = Instantiate(_catPrefab, _handTransform);
-        newCat.transform.localScale= Vector3.zero;
-        _catSprite = newCat.transform;
+        var randomCatPrefab = _catStacker.GetRandomCatPrefab();
+        _grabbedCat = Instantiate(randomCatPrefab, _handTransform);
+        _grabbedCat.transform.localScale= Vector3.zero;
+        //_stackableCat = newCat.transform;
     }
 
     private void ResetGrabbing()
