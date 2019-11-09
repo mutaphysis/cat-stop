@@ -471,16 +471,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8296461569558729938}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dbf4ab7c3e25419d9be99f647d8052e, type: 3}
+  m_Script: {fileID: 11500000, guid: 28c74e56d9ee4134809d9cf57f1c2c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _catStacker: {fileID: 0}
   _placementPeriod: 2
   _animator: {fileID: 6013364938167031000}
   _limitMouseRange: 5
   _handTransform: {fileID: 8781235482277367332}
-  _catSprite: {fileID: 0}
-  _catPrefab: {fileID: 2141076496307933992, guid: 8bfcdbb587b7549b0b502a57b6be0d4e,
-    type: 3}
   _catScaleUp:
     serializedVersion: 2
     m_Curve:
@@ -491,35 +489,17 @@ MonoBehaviour:
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
-      time: 0.20874646
-      value: 0.07177483
-      inSlope: 0.8201356
-      outSlope: 0.8201356
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.3192383
-      value: 1.0721633
-      inSlope: 1.1774689
-      outSlope: 1.1774689
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.82839894
-      value: 0.991734
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
