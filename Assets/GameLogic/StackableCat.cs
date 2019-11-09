@@ -4,6 +4,11 @@ namespace GameLogic
 {
     public class StackableCat : MonoBehaviour
     {
+        [SerializeField]
+        private float _weight = 1;
+
+        public float Weight => _weight;
+
         public float DetermineHeight()
         {
             var spriteRenderer = GetComponent<SpriteRenderer>();
